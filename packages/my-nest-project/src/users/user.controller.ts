@@ -4,16 +4,16 @@ import { UserService } from './user.service';
 import { CreateUserDto } from '../model/users/dto/create-user.dto';
 import { User } from '../model/users/user.entity';
 
-@Controller('api')
+@Controller('api/user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
+  @Post('create')
   async create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return await this.userService.create(createUserDto);
   }
 
-  @Get()
+  @Get('list')
   async findAll(): Promise<User[]> {
     return await this.userService.findAll();
   }
