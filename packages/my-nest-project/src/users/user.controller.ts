@@ -9,32 +9,34 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto): User {
-    return this.userService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
+    return await this.userService.create(createUserDto);
   }
 
   @Get()
-  findAll(): User[] {
-    return this.userService.findAll();
+  async findAll(): Promise<User[]> {
+    return await this.userService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): User | undefined {
-    return this.userService.findOne(Number(id));
+  async findOne(@Param('id') id: string): Promise<User | null> {
+    return await this.userService.findOne(Number(id));
   }
 
   @Get('username/:username')
-  findByUsername(@Param('username') username: string): User | undefined {
-    return this.userService.findByUsername(username);
+  async findByUsername(
+    @Param('username') username: string,
+  ): Promise<User | null> {
+    return await this.userService.findByUsername(username);
   }
 
   @Get('email/:email')
-  findByEmail(@Param('email') email: string): User | undefined {
-    return this.userService.findByEmail(email);
+  async findByEmail(@Param('email') email: string): Promise<User | null> {
+    return await this.userService.findByEmail(email);
   }
 
   @Post('register')
-  register(@Body() createUserDto: CreateUserDto): User {
-    return this.userService.create(createUserDto);
+  async register(@Body() createUserDto: CreateUserDto): Promise<User> {
+    return await this.userService.create(createUserDto);
   }
 }

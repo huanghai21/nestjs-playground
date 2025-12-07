@@ -18,55 +18,55 @@ describe('UserService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should create a user', () => {
+  it('should create a user', async () => {
     const createUserDto: CreateUserDto = {
       username: 'testuser',
       email: 'test@example.com',
       password: 'testpassword',
     };
-    const createdUser = service.create(createUserDto);
+    const createdUser = await service.create(createUserDto);
     expect(createdUser).toHaveProperty('id');
     expect(createdUser.username).toBe('testuser');
     expect(createdUser.email).toBe('test@example.com');
   });
 
-  it('should find all users', () => {
-    const users = service.findAll();
+  it('should find all users', async () => {
+    const users = await service.findAll();
     expect(Array.isArray(users)).toBe(true);
   });
 
-  it('should find one user by id', () => {
+  it('should find one user by id', async () => {
     const createUserDto: CreateUserDto = {
       username: 'testuser2',
       email: 'test2@example.com',
       password: 'testpassword2',
     };
-    const createdUser = service.create(createUserDto);
-    const foundUser = service.findOne(createdUser.id);
+    const createdUser = await service.create(createUserDto);
+    const foundUser = await service.findOne(createdUser.id);
     expect(foundUser).toBeDefined();
     expect(foundUser?.id).toBe(createdUser.id);
   });
 
-  it('should find one user by username', () => {
+  it('should find one user by username', async () => {
     const createUserDto: CreateUserDto = {
       username: 'testuser3',
       email: 'test3@example.com',
       password: 'testpassword3',
     };
-    service.create(createUserDto);
-    const foundUser = service.findByUsername('testuser3');
+    await service.create(createUserDto);
+    const foundUser = await service.findByUsername('testuser3');
     expect(foundUser).toBeDefined();
     expect(foundUser?.username).toBe('testuser3');
   });
 
-  it('should find one user by email', () => {
+  it('should find one user by email', async () => {
     const createUserDto: CreateUserDto = {
       username: 'testuser4',
       email: 'test4@example.com',
       password: 'testpassword4',
     };
-    service.create(createUserDto);
-    const foundUser = service.findByEmail('test4@example.com');
+    await service.create(createUserDto);
+    const foundUser = await service.findByEmail('test4@example.com');
     expect(foundUser).toBeDefined();
     expect(foundUser?.email).toBe('test4@example.com');
   });

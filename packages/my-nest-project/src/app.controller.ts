@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller('api')
+@Controller() // 使用根路径作为前缀
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
