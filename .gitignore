@@ -13,6 +13,10 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# SQLite Database files
+*.sqlite
+*.sqlite3
+
 # dotenv environment variable files
 .env
 .env.development
